@@ -1,0 +1,139 @@
+:root {
+    --bgContentColor: white;
+    --bgColorAguja: black;
+    --widthContainer: 24rem;
+}
+* {box-sizing: border-box;margin: 0;padding: 0;}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: rgba(225,225,225,.4);
+}
+.reloj {
+    width: var(--widthContainer);
+    height: var(--widthContainer);
+    border-radius: 50%;
+    position: relative;
+    transform: rotate(-90deg);
+    background: var(--bgContentColor);
+    border: 1px solid #ccc;
+}
+.reloj > div {
+    border-radius: 40%;
+}
+.reloj .punto_indicacion_minuto {
+    position: absolute;
+    top: calc(var(--widthContainer)/2.03);
+    left: calc(var(--widthContainer)/2.03);
+    width: calc(var(--widthContainer)/2 - 12px);
+    height: 2px;
+    background:linear-gradient(60deg,transparent 91%, gray 9%) !important;
+    transform-origin: 0 0;
+    background: #002; 
+    z-index: 1;       
+}
+
+.reloj #segundo {
+    content: "";
+    position: absolute;
+    top: calc(var(--widthContainer)/2.03 );
+    left: calc(var(--widthContainer)/2.03 );
+    width: calc(var(--widthContainer)/2 - 10px);
+    height: 2px;
+    background: var(--bgColorAguja);
+    animation: rotar 60s steps(60) infinite;
+    transform-origin: 0 0;
+    z-index: 5;
+    animation: indicationHora 1s infinite linear;
+}    
+@keyframes indicationHora {
+    to {
+        background:linear-gradient(90deg,red 81%, red 9%);
+    }
+}
+.reloj #minuto {
+    content: "";
+    position: absolute;
+    top: calc(var(--widthContainer)/2.03);
+    left: calc(var(--widthContainer)/2.03);
+    width: calc(var(--widthContainer)/2 - 50px);
+    height: 3px;
+    background: var(--bgColorAguja);
+    animation: rotar 3600s steps(60) infinite;
+    transform-origin: 0 0;
+    z-index: 3;
+}        
+.reloj #hora {
+    position: absolute;
+    top: calc(var(--widthContainer)/2.03 );
+    left: calc(var(--widthContainer)/2.03 );
+    width: calc(var(--widthContainer)/2 - 65px);
+    height: 4px;
+    background: red;
+    animation: rotar 43200s steps(60) infinite;
+    transform-origin: 0 0;   
+    cursor: pointer;
+    z-index: 3;    
+}
+/*
+.hora {
+    width:4px;
+    height:3px;
+    background:transparent;
+    position:absolute;
+}
+*/
+@keyframes rotar {  
+    to {
+        transform: rotate(360deg);
+    }
+}           
+.reloj .punto_indicacion_minuto.min {
+    background:linear-gradient(60deg,transparent 91%, red 9%) !important;
+    height: 2px;
+}
+.reloj .punto_indicacion_minuto.min:after {
+    content: attr(data-hora);
+    position: absolute;
+    top: calc( var(--widthContainer) / 2 - 50px );
+    left: -5px;
+    font-size: .75rem;
+    z-index:11;
+}
+.reloj .punto_indicacion_minuto.min50:after {
+    transform: rotate(-120deg) !important;
+    z-index:11;
+}
+.reloj .punto_indicacion_minuto.min55:after {
+    transform: rotate(-150deg) !important;
+    z-index:11;
+}
+.reloj .punto_indicacion_minuto.min45:after {
+    transform: rotate(-90deg) !important;
+    z-index:11;
+} 
+.reloj .punto_indicacion_minuto.min15:after {
+    transform: rotate(90deg) !important;
+    z-index:11;
+}                
+.reloj .punto_indicacion_minuto.min5:after {
+    transform: rotate(-210deg) !important;
+    z-index:11;
+}
+.reloj .punto_indicacion_minuto.min10:after {
+    transform: rotate(-240deg) !important;
+    z-index:11;
+}                
+h1 {font-family: arial;font-size: 4em;font-weight: 500;}
+.detalle {font-size: 12px;text-align:center;}
+
+@keyframes m {
+    to {color: inherit}
+}
+@keyframes timbre {
+    0% {
+        background-color: red;
+    }
+}
